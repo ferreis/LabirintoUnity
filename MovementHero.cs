@@ -8,7 +8,9 @@ public class MovementHero : MonoBehaviour
 {
     public float speed = 5;
     private Vector3 _move;
-
+    public static bool trava = false;
+    private float delay = 3;
+    private float countdown = 0;
     private void LateUpdate()
     {
         _move =
@@ -16,16 +18,32 @@ public class MovementHero : MonoBehaviour
                 0,
                 Input.GetAxis("Vertical2"));
 
-        if (
-            (Input.GetKey("up") || Input.GetKey("down")) &&
-            (Input.GetKey("left") || Input.GetKey("right"))
-        )
+        if (trava == false)
         {
-            transform.Translate(-_move * ((speed / 2) * Time.deltaTime));
+            if (
+                (Input.GetKey("up") || Input.GetKey("down")) &&
+                (Input.GetKey("left") || Input.GetKey("right"))
+            )
+            {
+                transform.Translate(-_move * ((speed / 2) * Time.deltaTime));
+            }
+            else
+            {
+                transform.Translate(-_move * (speed * Time.deltaTime));
+            }
         }
-        else
+
+        if (trava == true)
         {
-            transform.Translate(-_move * (speed * Time.deltaTime));
+            if (countdown * Time.deltaTime < delay * Time.deltaTime)
+            {
+                countdown += 0.01f;
+            }
+            else
+            {
+                trava = false;
+                countdown = 0;
+            }
         }
     }
 }

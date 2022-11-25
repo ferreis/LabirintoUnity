@@ -7,18 +7,18 @@ using UnityEngine.UIElements;
 
 public class travaPlayer : MonoBehaviour
 {
-    private float _trava = 3;
-    private void OnTriggerEnter(Collider other)
+    
+    
+    private void OnTriggerEnter(Collider objAtri)
     {
-        if (other.gameObject.name == "Hero")
+        if (objAtri.gameObject.name == "Hero")
         {
-            
-            Vector3 save = new Vector3();
-            for (int x = 0; x < _trava; x++)
-            {
-                save = (gameObject.name == "Slime").GetType().Attributes(_trava);
-                other.gameObject;
-            }
+            MovementSlime.trava = true;
         }
+        if (objAtri.gameObject.name == "Slime")
+        {
+            MovementHero.trava = true;
+        }
+        Destroy(gameObject);
     }
 }
