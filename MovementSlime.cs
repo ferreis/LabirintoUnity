@@ -1,41 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class MovementSlime : MonoBehaviour
 {
     public float speed = 5;
-    private Vector3 _move;
+    private float horizontalInput;
+    private float verticalInput;
+    private float turnSpeed = 90;
+
+
+    public static bool _quebrarParede = false;
     public static bool trava = false;
+    public float countdown = 0;
     private float delay = 3;
-    private float countdown = 0;
+
+
 
     private void LateUpdate()
     {
-        _move =
-            new Vector3(Input.GetAxis("Horizontal"),
-                0,
-                Input.GetAxis("Vertical"));
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+
         if (trava == false)
         {
-            if (
-                (Input.GetKey("w") || Input.GetKey("s")) &&
-                (Input.GetKey("a") || Input.GetKey("d"))
-            )
+            if (horizontalInput.Equals(verticalInput))
             {
-                transform.Translate(-_move * ((speed / 2) * Time.deltaTime));
+                transform.Translate(Vector3.forward * (Time.deltaTime * speed / 1.5f * verticalInput));
+                transform.Rotate(Vector3.up * (Time.deltaTime * turnSpeed * horizontalInput));
             }
             else
             {
-                transform.Translate(-_move * (speed * Time.deltaTime));
+                transform.Translate(Vector3.forward * (Time.deltaTime * speed * verticalInput));
+                transform.Rotate(Vector3.up * (Time.deltaTime * turnSpeed * horizontalInput));
             }
         }
-
-        if (trava == true)
+        else
         {
-            if (countdown*Time.deltaTime < delay*Time.deltaTime)
+            if (countdown * Time.deltaTime < delay * Time.deltaTime || trava == true)
             {
-                countdown += 0.01f;
+                countdown = countdown + 1*Time.deltaTime;
             }
             else
             {

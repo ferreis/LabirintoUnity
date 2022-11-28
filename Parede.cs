@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Parede : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.name == "Hero" && Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            MovementHero.quebrarParede = false;
+            Destroy(gameObject);
+            
+        }
+        if (collision.gameObject.name == "Slime" && Input.GetKeyDown(KeyCode.Space))
+        {
+            MovementSlime._quebrarParede = false;
+            Destroy(gameObject);
+        }
     }
 }

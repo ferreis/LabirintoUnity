@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using Unity.VisualScripting; //necess�rio para leitura do arquivo
+
+//necess�rio para leitura do arquivo
 
 
 public class Mapa : MonoBehaviour
@@ -29,10 +28,10 @@ public class Mapa : MonoBehaviour
     {
         // -- Comando para ler do arquivo e salvar na matriz de inteiros --
         //meu arquivo � um csv, mas funciona com qualquer extens�o de arquivo
-        string arquivo = File.ReadAllText(@"E:\Workspace\Unity\Labirinto\Assets\Scripts\m1.txt");
+        string arquivo = File.ReadAllText(@"E:\Workspace\Unity\Labirinto\Assets\Scripts\labirinto.txt");
         int tamanho = 50;
         int[,] mapa = new int[tamanho, tamanho];
-        int i = 0, j = 0;
+        int i = 0, j;
 
         foreach (var row in arquivo.Split('\n'))
         {
@@ -99,10 +98,5 @@ public class Mapa : MonoBehaviour
             }
         }
         // ----------------------------------------------------------------
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
