@@ -16,6 +16,8 @@ public class Mapa : MonoBehaviour
     public GameObject playerHero;
 
     public GameObject playerSlime;
+    public GameObject machado;
+    public GameObject trave;
 
     //--------------------------
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class Mapa : MonoBehaviour
     {
         // -- Comando para ler do arquivo e salvar na matriz de inteiros --
         //meu arquivo � um csv, mas funciona com qualquer extens�o de arquivo
-        string arquivo = File.ReadAllText(@"E:\Workspace\Unity\Labirinto\Assets\Scripts\labirinto.txt");
+        string arquivo = File.ReadAllText(@"E:\Workspace\Unity\Labirinto\Assets\Scripts\m1.txt");
         int tamanho = 50;
         int[,] mapa = new int[tamanho, tamanho];
         int i = 0, j;
@@ -92,6 +94,22 @@ public class Mapa : MonoBehaviour
                         //posiciona em 2 de altura, pois o objeto altura 4 tem tamanho 2 para cima e 2 para baixo
                         Vector3 p = new Vector3(i - 20f, 0.0f, j - 20f);
                         Instantiate(playerSlime, p, Quaternion.identity);
+                        break;
+                    }
+                    case 6:
+                    {
+                        //-20 � o ajuste para come�ar na parte superior esquerda
+                        //posiciona em 2 de altura, pois o objeto altura 4 tem tamanho 2 para cima e 2 para baixo
+                        Vector3 p = new Vector3(i - 20f, 0.0f, j - 20f);
+                        Instantiate(machado, p, Quaternion.identity);
+                        break;
+                    }
+                    case 7:
+                    {
+                        //-20 � o ajuste para come�ar na parte superior esquerda
+                        //posiciona em 2 de altura, pois o objeto altura 4 tem tamanho 2 para cima e 2 para baixo
+                        Vector3 p = new Vector3(i - 20f, 0.0f, j - 20f);
+                        Instantiate(trave, p, Quaternion.identity);
                         break;
                     }
                 }

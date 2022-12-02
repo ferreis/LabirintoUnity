@@ -21,14 +21,6 @@ public class DetectCollisions : MonoBehaviour
         ) SwitchCollisionDetectionMode();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Wall") && Input.GetKey("up"))
-        {
-            Debug.Log("teste");
-        }
-    }
-
     void SwitchCollisionDetectionMode()
     {
         switch (m_Rigidbody.collisionDetectionMode)
